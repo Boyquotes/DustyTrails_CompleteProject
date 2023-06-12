@@ -1,22 +1,24 @@
 # Dusty Trails
-The complete source code for the rootinest tootinest RPG game tutorial series out there made with Godot 4 and GDScript. This game dev series was inspired by  [David Depesce's Godot 3.0](https://www.davidepesce.com/) series from 2019, which has now been deprecated and removed.
+The complete source code for the rootinest tootinest RPG game tutorial series out there made with Godot 4 and GDScript. This game dev series was inspired by  David Depesce's Godot 3.0 series from 2018, which has now been deprecated and removed.
 
 ## Project Overview
 This game is a western-esque wild west RPG that includes the following:
-- Player Animations, Movement, and Stats
-- Complete Game GUI
-- Pickups and Consumables
-- Enemy Movement, Animations, and Stats
-- Enemy Random Roaming & Spawning
-- Random Loot Drops
-- Player & Enemy Death, Damage, and Attacks
-- XP and Leveling
-- Basic NPC with a Quest
-- Scene Transition (Location Changing) & Day-Night Cycle
-- Game Music & SFX
-- Game Saving, Pausing, Autosaving, and Loading
-- Game Map with Collisions & Camera
-- Project Exporting
+is tutorial series will cover the following aspects: 
+- Player Animations, Movement, and Statistics
+-	Complete Game GUI 
+-	Pickups and Consumables 
+-	Enemy Movement, Animations, and Stats 
+-	Enemy Random Roaming & Spawning 
+-	Random Loot Drops 
+-	Player & Enemy Death, Damage, and Attacks 
+-	XP and Leveling 
+-	Basic Customizable NPC with a Quest 
+-	Scene Transition (Location Changing) 
+-	Game Music & SFX 
+-	Game Saving, Pausing, and Loading 
+-	Game Map with Collisions & Camera 
+-	(BONUS) Simple Shopkeeper
+-	Project Exporting 
 
 ## Asset File Download
 All assets can be downloaded from my Google Drive:
