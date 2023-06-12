@@ -33,7 +33,7 @@ var max_health = 100
 var health_regen = 1 
 
 # Bullet & attack variables
-var bullet_damage = 10
+var bullet_damage = 30
 var bullet_reload_time = 1000
 var bullet_fired_time = 0.5
 var bullet_scene = preload("res://Scenes/EnemyBullet.tscn")
@@ -65,7 +65,6 @@ func _physics_process(delta):
 		direction = direction.rotated(rng.randf_range(PI/4, PI/2))
 		#timer countdown random range
 		timer = rng.randf_range(2, 5)
-		enemy_animations(direction)
 	#if they collide with the player 
 	#trigger the timer's timeout() so that they can chase/move towards our player
 	else:
@@ -92,11 +91,13 @@ func _on_timer_timeout():
 	if player_distance.length() <= 20:
 		direction = Vector2.ZERO
 		new_direction = player_distance.normalized()
+		$RayCast2D.target_position = player_distance.normalized()
 		
 	#chase radius
 	#chase/move towards player to attack them
 	elif player_distance.length() <= 100 and timer == 0:
 		direction = player_distance.normalized()			
+		$RayCast2D.target_position = player_distance.normalized()
 		
 	#random roam radius
 	elif timer == 0:
@@ -230,5 +231,3 @@ func data_to_load(data):
 	position = Vector2(data.position[0], data.position[1])
 	health = data.health
 	max_health = data.max_health
-
-
