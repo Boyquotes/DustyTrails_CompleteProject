@@ -12,6 +12,7 @@ var loading = false
 func _on_saloon_body_entered(body):
 	if body.name == "Player":
 		get_tree().change_scene_to_file("res://Scenes/Saloon.tscn")
+		queue_free()
 
 #save function		
 func save():

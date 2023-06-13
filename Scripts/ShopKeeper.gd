@@ -6,6 +6,7 @@ enum Pickups { AMMO, STAMINA, HEALTH }
 #player reference
 func _ready():
 	player = get_tree().root.get_node("Main/Player")
+	$ShopMenu.hide()
 
 #updates coin amount
 func _process(delta):
@@ -43,6 +44,7 @@ func _on_purchase_stamina_pressed():
 		player.add_pickup(Pickups.STAMINA)
 		player.coins -= 2
 
+#hides our menu if we're not in the area2d
 func _on_area_2d_body_exited(body):
 	$ShopMenu.hide()
 	get_tree().paused = false

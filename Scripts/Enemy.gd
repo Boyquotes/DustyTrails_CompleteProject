@@ -33,7 +33,7 @@ var max_health = 100
 var health_regen = 1 
 
 # Bullet & attack variables
-var bullet_damage = 30
+var bullet_damage = 10
 var bullet_reload_time = 1000
 var bullet_fired_time = 0.5
 var bullet_scene = preload("res://Scenes/EnemyBullet.tscn")
@@ -81,7 +81,12 @@ func _physics_process(delta):
 	# Turn RayCast2D toward movement direction	
 	if direction != Vector2.ZERO:
 		$RayCast2D.target_position = direction.normalized() * 50
-			
+
+#syncs new_direction with the actual movement direction and is called whenever the enemy moves or rotates
+func sync_new_direction():
+	if direction != Vector2.ZERO:
+		new_direction = direction.normalized()	
+				
 func _on_timer_timeout():
 	# Calculate the distance of the player's relative position to the enemy's position
 	var player_distance = player.position - position
@@ -89,15 +94,15 @@ func _on_timer_timeout():
 	#attack radius
 	#turn towards player so that it can attack
 	if player_distance.length() <= 20:
-		direction = Vector2.ZERO
 		new_direction = player_distance.normalized()
-		$RayCast2D.target_position = player_distance.normalized()
+		sync_new_direction() 
+		direction = Vector2.ZERO  # Stop moving while attacking
 		
 	#chase radius
 	#chase/move towards player to attack them
 	elif player_distance.length() <= 100 and timer == 0:
-		direction = player_distance.normalized()			
-		$RayCast2D.target_position = player_distance.normalized()
+		direction = player_distance.normalized()	
+		sync_new_direction()		
 		
 	#random roam radius
 	elif timer == 0:
@@ -110,6 +115,7 @@ func _on_timer_timeout():
 			elif random_direction < 0.1:
 				#enemy moves
 				direction = Vector2.DOWN.rotated(rng.randf() * 2 * PI)
+			sync_new_direction()	
 				
 #animations to play
 func enemy_animations(direction : Vector2):
@@ -125,7 +131,6 @@ func enemy_animations(direction : Vector2):
 func returned_direction(direction : Vector2):
 	#it normalizes the direction vector to make sure it has length 1 
 	var normalized_direction  = direction.normalized()
-	
 	if normalized_direction.y >= 0.707:
 		return "down"
 	if normalized_direction.y <= -0.707:
@@ -231,3 +236,5 @@ func data_to_load(data):
 	position = Vector2(data.position[0], data.position[1])
 	health = data.health
 	max_health = data.max_health
+
+

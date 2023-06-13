@@ -107,6 +107,13 @@ func _process(delta):
 	#update coin amount
 	$UI/CoinAmount/Value.text = str(coins)	
 	
+	#cursor show/hide
+	if get_tree().paused == false:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	
 func _physics_process(delta):
 	# Get player input (left, right, up/down)
 	var direction: Vector2
@@ -320,11 +327,11 @@ func hit(damage):
 #updates player xp
 func update_xp(value):
 	xp += value
-	
 	#check if player leveled up after reaching xp requirements
 	if xp >= xp_requirements:
 		#allows input
 		set_process_input(true)
+		set_physics_process(false)
 		#make popup visible
 		$UI/LevelUpPopup.popup_centered()
 		$UI/LevelUpPopup.visible = true
@@ -367,7 +374,6 @@ func update_xp(value):
 		
 		#play level up music
 		$LevelUpMusic.play()
-	
 	#emit signals
 	xp_requirements_updated.emit(xp_requirements)	
 	xp_updated.emit(xp)
@@ -382,16 +388,16 @@ func _on_animation_player_animation_finished(anim_name):
 
 #level popup confirm
 func _on_confirm_pressed():
-	$UI/LevelUpPopup.visible =false
+	$UI/LevelUpPopup.visible = false
 	get_tree().paused = false
+	set_physics_process(true)
 	$BackgroundMusic.play()
 	
 #resume game
 func _on_resume_pressed():
-	if not paused:
-		#set pauses state to be false
-		get_tree().paused = false
-		paused = false
+	#set pauses state to be false
+	get_tree().paused = false
+	paused = false
 	#accept movement and input
 	set_process_input(true)
 	set_physics_process(true)
