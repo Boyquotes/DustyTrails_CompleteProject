@@ -1,9 +1,8 @@
 # Dusty Trails
-The complete source code for the rootinest tootinest RPG game tutorial series out there made with Godot 4 and GDScript. This game dev series was inspired by  David Depesce's Godot 3.0 series from 2018, which has now been deprecated and removed.
+The complete source code for the rootinest tootinest RPG game tutorial series out there made with Godot 4 and GDScript. This tutorial series aims to teach you how to make a game from start to finish, and ultimately show you all the things that you need to know as a beginner Godot developer!
 
 ## Project Overview
 This game is a western-esque wild west RPG that includes the following:
-is tutorial series will cover the following aspects: 
 - Player Animations, Movement, and Statistics
 -	Complete Game GUI 
 -	Pickups and Consumables 
