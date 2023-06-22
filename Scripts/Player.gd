@@ -141,7 +141,11 @@ func _physics_process(delta):
 		move_and_collide(movement)
 		#plays animations only if the player is not attacking
 		player_animations(direction)
-	
+
+	# Check if the attack animation has finished, to reset is_attacking value
+	if is_attacking and !$AnimatedSprite2D.is_playing():
+		is_attacking = false
+
 	# Turn RayCast2D toward movement direction	
 	if direction != Vector2.ZERO:
 		$RayCast2D.target_position = direction.normalized() * 50
